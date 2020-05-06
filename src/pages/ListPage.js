@@ -7,7 +7,6 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import Avatar from '@material-ui/core/Avatar';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import StoreHelper from "../util/StoreHelper";
 
@@ -59,7 +58,7 @@ const ListPage = () => {
         <>
         <AppBar/>
         <List className={classes.root}>
-            {stores.map(store => <StoreItem store={store}/>)}
+            {stores.map(store => <StoreItem key = {store.code} store={store}/>)}
         </List>
         <BottomNav/>
     </>

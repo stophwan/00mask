@@ -31,8 +31,8 @@ function App() {
           <Route path="/list">
             <ListPage/>
           </Route>
-          <Route path="/list">
-            <MapPage/>
+          <Route path="/help">
+            <HelpPage/>
           </Route>
           <Route path="/">
             <MapPage />

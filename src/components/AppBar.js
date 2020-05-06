@@ -30,7 +30,7 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             00Mask
           </Typography>
-          <IconButton edge="start"  color="inherit" aria-label="refresh">
+          <IconButton edge="start" color="inherit" aria-label="refresh">
             <RefreshIcon />
           </IconButton>
         </Toolbar>

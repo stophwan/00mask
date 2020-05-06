@@ -3,6 +3,8 @@ import produce from 'immer'
 const baseState = {
     loading: false,
     error: "",
+    mapCenter: [37.3595704, 127.105399],
+    mapZoom:14,
     stores: [
         {
           addr: '서울특별시 송파구 가락로 277 (방이동)',
