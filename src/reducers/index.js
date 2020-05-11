@@ -1,4 +1,5 @@
 import produce from 'immer'
+import action from '../actions';
 
 const baseState = {
     loading: false,
@@ -32,6 +33,16 @@ const baseState = {
 };
 
 const reducer = produce((state, action) => {
+  switch(action.type) {
+    case "SET_MAP_ZOOM":
+      state.mapZoom = action.payload;
+      break;
+    case "SET_MAP_CENTER":
+      state.mapCenter = action.payload;
+      break;
+    default:
+      break;
+  }
 
 }, baseState);
 
