@@ -1,6 +1,7 @@
 /*global naver*/
 
 import React from "react";
+import _ from "lodash";
 import { connect } from 'react-redux'
 import { styled } from '@material-ui/core/styles';
 import {setMapZoom, setMapCenter } from "../actions/index"
@@ -23,22 +24,37 @@ class NaverMap extends React.Component{
         this.markers = {};
     }
 
-    loadPins(){
+    shouldComponentUpdate(nextProps, nextState){
+        if(!this.map){
+            return true;
+        }
+
+        if(this.props.mapZoom !== nextProps.mapZoom||
+            this.props.stores !== nextProps.stores){
+                this.loadPins(nextProps.stores);
+            }
+        return false;
+    }
+
+    loadPins(stores){
         const icons = [
             pinBlack, pinGrey, pinRed, pinYellow, pinGreen, pinBlack
         ];
 
+
         var bounds = this.map.getBounds();
-        this.props.stores.forEach((store)=>{
+        _.each(stores, store=>{
             if(this.markers[store.code]) {
                 return;
             }
             if (bounds.hasLatLng({lat: store.lat, lng: store.lng})){
+                const idx = StoreHelper(store).idx;
                 const marker = new naver.maps.Marker({
                     position: new naver.maps.LatLng(store.lat, store.lng),
                     map: this.map,
-                    icons: {
-                        url: icons[StoreHelper(store).idx],
+                    zIndex: idx === 5? 0: idx,
+                    icon: {
+                        url: icons[idx],
                         size: new naver.maps.Size(64,64),
                         origin: new naver.maps.Point(0, 0),
                         anchor: new naver.maps.Point(32, 50)
@@ -64,7 +80,7 @@ class NaverMap extends React.Component{
         naver.maps.Event.addListener(this.map, 'dragend', ()=>{
             const coord = this.map.getCenter();
             dispatch(setMapCenter([coord.lat(), coord.lng()]));
-            this.loadPins();
+            this.loadPins(this.props.stores);
         })
         naver.maps.Event.addListener(this.map, 'zoom_changed', zoom=>{
             dispatch(setMapZoom(zoom));
@@ -77,6 +93,9 @@ class NaverMap extends React.Component{
 
     render(){
         console.log("RENDER!!")
+        if (this.map){
+            this.loadPins();
+        }
         return (
             <MapDiv ref={this.mapRef}/> 
         )

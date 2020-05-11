@@ -1,4 +1,5 @@
 import React from "react";
+import _ from "lodash"
 import { useSelector } from 'react-redux'
 import AppBar from "../components/AppBar";
 import BottomNav from "../components/BottomNav";
@@ -59,7 +60,7 @@ const ListPage = () => {
         <>
         <AppBar/>
         <List className={classes.root}>
-            {stores.map(store => <StoreItem key = {store.code} store={store}/>)}
+            {_.map(stores, store => <StoreItem key = {store.code} store={store}/>)}
         </List>
         <BottomNav/>
     </>
