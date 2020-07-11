@@ -14,7 +14,7 @@ function stat2idx(remain_stat) {
 const COLOR = ["#000", grey[500], red[600], amber[600], green[800], grey[900]]
 const DESC = [
     "정보없음",
-    "1개 이해",
+    "1개 이하",
     "2개 ~ 29개",
     "30 ~ 99개",
     "100개 이상",

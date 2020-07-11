@@ -28,6 +28,7 @@ export default function SimpleBottomNavigation() {
       if (path === "/list") return 1;
       if (path === "/help") return 2;
       if (path === "/about") return 3;
+      return 0;
   }
   );
 

@@ -5,7 +5,7 @@ const baseState = {
     error: "",
     mapCenter: [37.3595704, 127.105399],
     center: [37.3595704, 127.105399],
-    mapZoom:16,
+    mapZoom: 16,
     stores: {}
       
 };
@@ -21,8 +21,8 @@ const reducer = produce((state, action) => {
     case "FETCH_STORES":
       action.payload.stores.forEach(store =>{
         state.stores[store.code] = store;
-      })
-      break
+      });
+      break;
     default:
       break;
   }

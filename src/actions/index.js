@@ -16,11 +16,11 @@ export function setMapCenter(coord){
     }
 }
 
-export function fetchStoreByGeo(lat, lng, m){
+export function fetchStoresByGeo(lat, lng, m){
     return async (dispatch)=>{
         const url = `${BASE_URL}/storesByGeo/json`;
         try{
-            const result = await axios(url, {params: {lat: lat, lng, lng, m:m}})
+            const result = await axios(url, {params: { lat, lng, m}})
             dispatch({
                 type: 'FETCH_STORES', payload: result.data});
         }catch(error){

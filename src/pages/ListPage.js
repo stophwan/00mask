@@ -10,11 +10,11 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import StorefrontIcon from '@material-ui/icons/Storefront';
 import StoreHelper from "../util/StoreHelper";
+import {Link} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
       flexGrow: 1,
-      width: '100%',
     },
     menuButton: {
       marginRight: theme.spacing(2),
@@ -26,9 +26,13 @@ const useStyles = makeStyles((theme) => ({
 
 const StoreItem = ({store}) => {
     const {addr, name, stock_at} = store;
-    const {color, desc, short} = StoreHelper(store);
+    const {color, desc} = StoreHelper(store);
     return(
-        <ListItem>
+        <ListItem
+        button = {true} 
+        component = {Link}
+        to={`/stores/${store.code}`}
+        >
         <ListItemIcon>
             <StorefrontIcon style={{color}}/>
         </ListItemIcon>
